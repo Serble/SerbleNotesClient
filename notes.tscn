@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://m15euhmlkpi6"]
+
+[ext_resource type="Script" path="res://Scripts/notes.gd" id="1_cbo43"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y3ldr"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_uarq1"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_6r6h5"]
+font_size = 22
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cbo43")
+
+[node name="Main View Split" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = -500
+
+[node name="Nav" type="VBoxContainer" parent="Main View Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Main View Split/Nav"]
+layout_mode = 2
+text = "Notes"
+label_settings = SubResource("LabelSettings_y3ldr")
+horizontal_alignment = 1
+
+[node name="Scroll View" type="ScrollContainer" parent="Main View Split/Nav"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List of notes" type="VBoxContainer" parent="Main View Split/Nav/Scroll View"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main View Split/Nav"]
+layout_mode = 2
+
+[node name="New encrypted note" type="Button" parent="Main View Split/Nav/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Encrypted Note"
+
+[node name="New note" type="Button" parent="Main View Split/Nav/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Note"
+
+[node name="Notes" type="VBoxContainer" parent="Main View Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextEdit" type="TextEdit" parent="Main View Split/Notes"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Enter text..."
+
+[node name="Save" type="Button" parent="Main View Split/Notes"]
+modulate = Color(0, 0.603922, 0, 1)
+layout_mode = 2
+text = "Save"
+
+[node name="EncryptionMsg" type="Label" parent="Main View Split/Notes"]
+visible = false
+layout_mode = 2
+text = "Setup Encryption"
+label_settings = SubResource("LabelSettings_uarq1")
+horizontal_alignment = 1
+
+[node name="EncryptionDesc" type="Label" parent="Main View Split/Notes"]
+visible = false
+layout_mode = 2
+text = "To encrypt your note you must first set a password. This password will be required to access this note from now on."
+label_settings = SubResource("LabelSettings_6r6h5")
+horizontal_alignment = 1
+
+[node name="Password" type="LineEdit" parent="Main View Split/Notes"]
+visible = false
+layout_mode = 2
+
+[node name="Decrypt" type="Button" parent="Main View Split/Notes"]
+visible = false
+layout_mode = 2
+text = "Decrypt"
+
+[connection signal="pressed" from="Main View Split/Nav/HBoxContainer/New encrypted note" to="." method="_on_new_encrypted_note_pressed"]
+[connection signal="pressed" from="Main View Split/Nav/HBoxContainer/New note" to="." method="_on_new_note_pressed"]
+[connection signal="pressed" from="Main View Split/Notes/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Main View Split/Notes/Decrypt" to="." method="_on_decrypt_pressed"]

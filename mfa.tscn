@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfat6weq4sr26"]
+
+[ext_resource type="Script" path="res://Scripts/mfa.gd" id="1_n5ivh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dg6r8"]
+font_size = 58
+
+[sub_resource type="LabelSettings" id="LabelSettings_jo0ib"]
+font_color = Color(1, 0.0392157, 0.0235294, 1)
+
+[node name="mfa" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n5ivh")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "MFA Verification"
+label_settings = SubResource("LabelSettings_dg6r8")
+horizontal_alignment = 1
+
+[node name="Error" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_jo0ib")
+horizontal_alignment = 1
+
+[node name="Password" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+placeholder_text = "Code"
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sign in"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
