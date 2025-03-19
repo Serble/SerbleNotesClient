@@ -61,6 +61,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "New Note"
 
+[node name="Logout" type="Button" parent="Main View Split/Nav"]
+layout_mode = 2
+text = "Logout"
+
 [node name="Notes" type="VBoxContainer" parent="Main View Split"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -100,5 +104,6 @@ text = "Decrypt"
 
 [connection signal="pressed" from="Main View Split/Nav/HBoxContainer/New encrypted note" to="." method="_on_new_encrypted_note_pressed"]
 [connection signal="pressed" from="Main View Split/Nav/HBoxContainer/New note" to="." method="_on_new_note_pressed"]
+[connection signal="pressed" from="Main View Split/Nav/Logout" to="." method="_on_logout_pressed"]
 [connection signal="pressed" from="Main View Split/Notes/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Main View Split/Notes/Decrypt" to="." method="_on_decrypt_pressed"]

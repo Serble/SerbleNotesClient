@@ -226,3 +226,11 @@ func _on_decrypt_pressed():
 	# Reload it because the password has been set
 	update_item_info(id);
 	select_note(id);
+
+
+func _on_logout_pressed():
+	var config: ConfigFile = ConfigFile.new();
+	config.load("user://login.cfg");
+	config.erase_section_key("login", "access_token");
+	config.save("user://login.cfg");
+	get_tree().change_scene_to_file("res://login.tscn");
